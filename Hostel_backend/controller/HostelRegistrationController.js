@@ -29,6 +29,7 @@ const updateHostel=async(req,res)=>{
         throw new Error('all fileds are mandatory')
      }
      const data=await hostelData.findByIdAndUpdate(req.params.id, req.body)
+     console.log(data)
     res.status(200).json(data)
 }
 const deleteHostelById=async(req,res)=>{

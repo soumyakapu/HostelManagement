@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { CREATE_HOSTEL, GET_ALL_HOSTELS } from '../utils/Api';
+import { CREATE_HOSTEL, DELETE_HOSTEL_BYID, GET_ALL_HOSTELS, UPDATE_HOSTEL_BYID } from '../utils/Api';
 
 const HostelRegistered =()=>{
     const details=
@@ -34,6 +34,8 @@ const HostelRegistered =()=>{
     // 
     useEffect(()=>{     
         getHostelDetails()
+
+       
     },[])
 
     const onChangeHandler =(e)=>{setData({
@@ -41,28 +43,63 @@ const HostelRegistered =()=>{
             [e.target.name]:e.target.value
         })}
     const submitHandler =(e)=>{
-            e.preventDefault()
+             e.preventDefault()
            
             createHostel()
             setData(details)
-            // setHostels([...hostels,createHostel()])
+           
+        }
+        const editHandler = (eachHostel)=>{
+            setData(eachHostel)
+          }
+          
+
+        const updateHostelById = async(e)=>{
+            e.preventDefault()
+            console.log(data)
+            const update = UPDATE_HOSTEL_BYID + data._id
+            console.log("are u comming inside")
+            console.log(update)
+           
+            const response = await fetch(update,{
+                method : 'PUT',
+                headers:{
+                    "Content-Type":"application/json"
+                 },
+                 body :JSON.stringify(data)
+                
+            })
+            const jsonResponse = await response.json()
+            
+            
+        }
+       
+        const deleteHandler =async(eachHostel)=>{
+            const deleteHostel = DELETE_HOSTEL_BYID + eachHostel._id
+            console.log(deleteHostel)
+            const response = fetch(deleteHostel,{
+                method : 'DELETE'
+            })
+
         }
     
     return(
     <div>
-        <h2>Registered Hostels</h2>
+        <div className='header'>Registered Hostels</div>
         <hr/>
-        <div>
+        <div >
             {
                 hostels.map((eachHostel)=>{
                     return(
                         <ul key={eachHostel.email}>
-                        <li >
+                        <li className='eachHostel'>
                             <div>{eachHostel.name}</div>
                             <div>{eachHostel.contact}</div>
                             <div>{eachHostel.email}</div>
                             <div>{eachHostel.location}</div>
                             <div>{eachHostel.facilities}</div> 
+                            <button onClick={()=>editHandler(eachHostel)}>Edit</button>
+                            <button onClick={()=>deleteHandler(eachHostel)}>Delete</button>
                         </li>
                         </ul>
                     )
@@ -71,7 +108,7 @@ const HostelRegistered =()=>{
             
         </div>
         <div>
-            <form onSubmit={submitHandler}>
+            <form>
               <label >Name : </label><input type='text' name='name'
                 value={data.name}
                 placeholder='enter hostel name'
@@ -98,8 +135,10 @@ const HostelRegistered =()=>{
                 onChange={onChangeHandler}
                 /><br/>
                 
-                <button type='submit'>submit</button>
+                <button onClick={submitHandler}>submit</button>
+              
              
+            <button onClick={updateHostelById}>update</button>
             </form>
         </div>
     </div>

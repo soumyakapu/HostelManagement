@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.header{
+color: darkgreen;
+text-align: center;
+font-size: 1600;
+}
+.eachHostel{
+  color: burlywood;
+  background-color: beige;
+  border: 2px black;
+  border-radius: 3px;
+  font-size: medium;
+  font-weight: bold;
+  padding-left: 4%;
+ overflow-anchor: scroll;
+}

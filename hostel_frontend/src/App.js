@@ -1,5 +1,4 @@
 
-import './App.css';
 import HostelRegistered from './components/HostelRegistered';
 
 function App() {
