@@ -6,3 +6,4 @@ const AddHostel = () =>{
         </>
     )
 }
+export default AddHostel

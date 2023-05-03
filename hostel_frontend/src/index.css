@@ -58,3 +58,20 @@ font-size: 1600;
   background-color: cadetblue;
   
 }
+.nav{
+  padding: 2%;
+  background-color: antiquewhite;
+  font-size: large;
+  text-align: right;
+ 
+  
+}
+.nav a{
+  margin-right: 20px;
+}
+.nav a.active {
+  font-weight: 100;
+  text-decoration: none;
+  color: blueviolet;
+}
+

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { CREATE_HOSTEL, DELETE_HOSTEL_BYID, GET_ALL_HOSTELS, UPDATE_HOSTEL_BYID } from '../utils/Api';
+import { Link } from 'react-router-dom';
 
 
 const HostelRegistered =()=>{
@@ -86,10 +87,7 @@ const HostelRegistered =()=>{
     
     return(
     <div>
-        <div className='header'>Registered Hostels
-        
-       <a href='./AddHostel' style={{accentColor:'GrayText',margin:'2%'}}>AddHostel</a>
-        </div>
+        {/* <div className='header'>Registered Hostels</div> */}
         <hr/>
         <div className='map'>
             {
