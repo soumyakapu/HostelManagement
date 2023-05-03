@@ -19,10 +19,42 @@ font-size: 1600;
 .eachHostel{
   color: burlywood;
   background-color: beige;
+  display: inline-table -moz-inline-box ;
   border: 2px black;
-  border-radius: 3px;
+  border-radius: 30px;
   font-size: medium;
   font-weight: bold;
   padding-left: 4%;
- overflow-anchor: scroll;
+ overflow: hidden;
+ grid-area: span;
+ 
+ border-width: 100cap;
+ box-shadow: 10vmax;
+ box-sizing:content-box;
+ width: 60%;
+ text-align: center;
+}
+
+.map .name:hover + .map,
+.map  .name:focus + .map{
+  display: block;
+}
+.form{
+  color: aqua;
+  text-align: center;
+} 
+.editbtn{
+  color: black;
+  background-color: green;
+}
+.deletebtn{
+  color: black;
+  background-color: red;
+}
+.submitbtn{
+  background-color: darkolivegreen;
+}
+.updatebtn{
+  background-color: cadetblue;
+  
 }
