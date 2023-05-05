@@ -5,7 +5,7 @@ import Home from './components/Home';
 import HostelRegistered from './components/HostelRegistered';
 import {BrowserRouter,Routes,Route, Link} from 'react-router-dom'
 import NavBar from './components/Navbar';
-
+import NotFound from './components/NotFound';
 function App() {
 
   return (
@@ -16,6 +16,7 @@ function App() {
         <Route path='/'element={<Home/>}></Route>
       <Route path='/registeredHostel' element={<HostelRegistered/>}></Route>
       <Route path='/addHostel' element={<AddHostel/>}></Route>
+      <Route path='*' element={<NotFound/>}></Route>
       </Routes>
       </BrowserRouter>
       

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { CREATE_HOSTEL, DELETE_HOSTEL_BYID, GET_ALL_HOSTELS, UPDATE_HOSTEL_BYID } from '../utils/Api';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 
 const HostelRegistered =()=>{
+    // const [isEditing , setIsEditing] = useState(false)
     const details=
         {
             name:'',
@@ -13,26 +14,30 @@ const HostelRegistered =()=>{
             facilities:''
         }
     
+    const navigate = useNavigate()
+
     const[hostels, setHostels] = useState([])
     const[data,setData] = useState(details)
+    // const [formData, setFormData] = useState(null);
+    
     async function getHostelDetails (){
     const response = await fetch(GET_ALL_HOSTELS)
     const jsonData = await response.json()
     setHostels(jsonData)
-       console.log(hostels)
+       
     }
-    const createHostel = async()=>{
-       const response = await fetch(CREATE_HOSTEL,{
-        method : 'POST',
+    // const createHostel = async()=>{
+    //    const response = await fetch(CREATE_HOSTEL,{
+    //     method : 'POST',
 
-        headers:{
-           "Content-Type":"application/json"
-        },
-        body :JSON.stringify(data)
-       })
-       const jsonData = await response.json()
+    //     headers:{
+    //        "Content-Type":"application/json"
+    //     },
+    //     body :JSON.stringify(data)
+    //    })
+    //    const jsonData = await response.json()
 
-     }
+    //  }
     // 
     useEffect(()=>{     
         getHostelDetails()
@@ -40,41 +45,41 @@ const HostelRegistered =()=>{
        
     },[])
 
-    const onChangeHandler =(e)=>{setData({
-            ...data,
-            [e.target.name]:e.target.value
-        })}
-    const submitHandler =(e)=>{
-            //  e.preventDefault()
+    // const onChangeHandler =(e)=>{setData({
+    //         ...data,
+    //         [e.target.name]:e.target.value
+    //     })}
+    // const submitHandler =(e)=>{
+    //         //  e.preventDefault()
            
-            createHostel()
-            setData(details)
+    //         createHostel()
+    //         setData(details)
            
-        }
+    //     }
         const editHandler = (eachHostel)=>{
-            setData(eachHostel)
-          }
+            navigate('/addHostel', {state: eachHostel})
+        }
           
 
-        const updateHostelById = async(e)=>{
-            e.preventDefault()
-            console.log(data)
-            const update = UPDATE_HOSTEL_BYID + data._id
-            console.log("are u comming inside")
-            console.log(update)
+        // const updateHostelById = async(e)=>{
+        //     e.preventDefault()
+        //     console.log(data)
+        //     const update = UPDATE_HOSTEL_BYID + data._id
+        //     console.log("are u comming inside")
+        //     console.log(update)
            
-            const response = await fetch(update,{
-                method : 'PUT',
-                headers:{
-                    "Content-Type":"application/json"
-                 },
-                 body :JSON.stringify(data)
+        //     const response = await fetch(update,{
+        //         method : 'PUT',
+        //         headers:{
+        //             "Content-Type":"application/json"
+        //          },
+        //          body :JSON.stringify(data)
                 
-            })
-            await response.json()
+        //     })
+        //     await response.json()
             
             
-        }
+        // }
        
         const deleteHandler =async(eachHostel)=>{
             const deleteHostel = DELETE_HOSTEL_BYID + eachHostel._id
@@ -84,10 +89,12 @@ const HostelRegistered =()=>{
             })
 
         }
+        // const handleFormSubmit = (data) => {
+        //     setFormData(data);
+        //   }
     
     return(
     <div>
-        {/* <div className='header'>Registered Hostels</div> */}
         <hr/>
         <div className='map'>
             {
@@ -109,7 +116,7 @@ const HostelRegistered =()=>{
             }
             
         </div>
-        <div>
+        {/* <div className='formDiv'>
             <form className='form'>
               <label >Name :</label><input type='text' name='name'
                 value={data.name}
@@ -142,7 +149,15 @@ const HostelRegistered =()=>{
              
             <button onClick={updateHostelById} className='updatebtn'>update</button>
             </form>
-        </div>
+        </div> */}
+        {/* <AddHostel onSubmit={handleFormSubmit}/> */}
+        {/* {formData && (
+        <div>
+          <h2>Form Data</h2>
+          <p>Name: {formData.name}</p>
+          <p>Email: {formData.email}</p>
+        </div> */}
+      {/* )} */}
     </div>
    
     )

@@ -39,10 +39,7 @@ font-size: 1600;
 .map  .name:focus + .map{
   display: block;
 }
-.form{
-  color: aqua;
-  text-align: center;
-} 
+
 .editbtn{
   color: black;
   background-color: green;
@@ -74,4 +71,9 @@ font-size: 1600;
   text-decoration: none;
   color: blueviolet;
 }
-
+.formDiv {
+  align-items: center;
+  background-color: azure;
+  display: flex;
+  justify-content: center;
+}
