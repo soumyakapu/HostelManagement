@@ -1,7 +1,7 @@
 FROM node:18.16.0
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /Hostel_backend
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
