@@ -81,13 +81,13 @@ const HostelRegistered =()=>{
             
         // }
        
-        const deleteHandler =async(eachHostel)=>{
+        const deleteHandler =async(e,eachHostel)=>{
             const deleteHostel = DELETE_HOSTEL_BYID + eachHostel._id
             console.log(deleteHostel)
             const response = fetch(deleteHostel,{
                 method : 'DELETE'
             })
-
+            navigate('/')
         }
         // const handleFormSubmit = (data) => {
         //     setFormData(data);
@@ -103,12 +103,12 @@ const HostelRegistered =()=>{
                         <ul key={eachHostel.email}>
                         <li className='eachHostel'>
                             <div className='name'>{eachHostel.name}</div>
-                            <div>{eachHostel.contact}</div>
-                            <div>{eachHostel.email}</div>
-                            <div>{eachHostel.location}</div>
-                            <div>{eachHostel.facilities}</div> 
+                            <div className='name'>{eachHostel.contact}</div>
+                            <div className='name'>{eachHostel.email}</div>
+                            <div className='name'>{eachHostel.location}</div>
+                            <div className='name'>{eachHostel.facilities}</div> 
                             <button onClick={()=>editHandler(eachHostel)} className='editbtn'>Edit</button>
-                            <button onClick={()=>deleteHandler(eachHostel)} className='deletebtn'>Delete</button>
+                            <button onClick={(e)=>deleteHandler(e,eachHostel)} className='deletebtn'>Delete</button>
                         </li>
                         </ul>
                     )
